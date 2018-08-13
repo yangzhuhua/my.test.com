@@ -100,11 +100,11 @@ class Trade_verify extends COMMON_Controller {
                 $price[] = doubleval($this->yuedu_model->get_vip_book_sale_price($good_id)) / 100;  //普通价格
             }
 
-            if($is_vip) {
+           /* if($is_vip) {
                 $vip_price = doubleval($this->activity_model->get_book_vip_price($good_id)) / 100;  //会员价格
                 if($original_price == round($vip_price, 2)) $params['active_price_flag'] = 1; //是否以活动价格购买
                 $price[] = $vip_price;
-            }
+            }*/
             
             if(!in_array($original_price,$price) && -1 == $this->yuedu_model->deal_limit_book_sale_price($good_id,strval($original_price*100),$price)){
                 $this->response_error(41116, '活动时间已结束');
